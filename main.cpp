@@ -13,30 +13,33 @@ int main()
 {
   string fileName = "TESTER.txt";
   FileInput theFile;
-  cout << theFile.FindLine(fileName, 2) << endl;
+  //cout << theFile.FindLine(fileName, 2) << endl;
   int num = theFile.findNumLines(fileName);
-  GenStack s(num);
   int rightBrackets = 0, leftBrackets = 0;
   int rightPara = 0, leftPara = 0, rightBrack = 0, leftBrack = 0;
   for(int i = 0; i < num; i++)
   {
     rightPara = 0, leftPara = 0, rightBrack = 0, leftBrack = 0;
-    string currLine = theFile.FindLine(fileName, 1);
+    string currLine = theFile.FindLine(fileName, i);
+    int length = theFile.findLineLength(fileName, i);
+    GenStack s(length);
     for(int ii = 0; ii < currLine.length(); ii++)
     {
-      cout << currLine << endl;
-      if(currLine[i] == '{')
+      s.push(currLine[ii]);
+      char temp = s.pop();
+      //cout << "temp: " << temp << endl;
+      if(temp == '{')
       {
         ++rightBrackets;
-      } else if (currLine[i] == '}') {
+      } else if (temp == '}') {
         ++leftBrackets;
-      } else if (currLine[i] == '(') {
+      } else if (temp == '(') {
         ++rightPara;
-      } else if (currLine[i] == ')') {
+      } else if (temp == ')') {
         ++leftPara;
-      } else if (currLine[i] == '[') {
+      } else if (temp == '[') {
         ++rightBrack;
-      } else if (currLine[i] == ']') {
+      } else if (temp == ']') {
         ++leftBrack;
       }
     }

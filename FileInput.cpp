@@ -13,11 +13,9 @@ string FileInput::FindLine(string fileName, int idx)
   string empty;
   ifstream file;
   file.open(fileName);
-  cout << "IDX: " << idx << endl;
   for(int i = 0; i < idx; i++)
   {
     getline(file, empty);
-    cout << "empty line: " << empty << endl;
     if(i == idx - 1){
       getline(file, inputLine);
     }
@@ -36,4 +34,21 @@ int FileInput::findNumLines(string fileName)
     counter++;
   }
   return counter;
+}
+
+int FileInput::findLineLength(string fileName, int idx)
+{
+  ifstream file;
+  string inputLine;
+  string empty;
+  int counter = 0;
+  file.open(fileName);
+  for(int i = 0; i < idx; i++)
+  {
+    getline(file, empty);
+    if(i == idx - 1){
+      getline(file, inputLine);
+      return inputLine.length();
+    }
+  }
 }
